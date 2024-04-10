@@ -51,7 +51,6 @@ class DataValidationError(Exception):
 
 class Category(Enum):
     """Enumeration of valid Product Categories"""
-
     UNKNOWN = 0
     CLOTHS = 1
     FOOD = 2
@@ -238,12 +237,12 @@ class Product(db.Model):
     def find_by_category(cls, category: Category = Category.UNKNOWN) -> list:
         """Returns all Products by their Category
 
-        :param category: values are ['MALE', 'FEMALE', 'UNKNOWN']
+        :param category: values are ['UNKNOWN', 'CLOTHS', 'FOOD', 'HOUSEWARES', 'AUTOMOTIVE', 'TOOLS']
         :type available: enum
 
         :return: a collection of Products that are available
         :rtype: list
 
         """
-        logger.info("Processing category query for %s ...", category.name)
+        logger.info("Processing category query for %s ...", category)
         return cls.query.filter(cls.category == category)
